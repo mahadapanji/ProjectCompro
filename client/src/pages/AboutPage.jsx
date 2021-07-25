@@ -1,5 +1,4 @@
 import React from "react";
-import About from "../components/About";
 import "./AboutPageCss.css"
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
@@ -11,6 +10,11 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import FotoProfile from "../assets/img/ProfilePict1.png";
 import Grid from '@material-ui/core/Grid';
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { fontSize } from "@material-ui/system";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -56,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom:10,
     paddingLeft: 200,
     paddingRight: 200,
-
     [theme.breakpoints.down('md')]: {
       backgroundColor: "#1e1f1e",
       paddingLeft: 0,
@@ -78,7 +81,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   TabPanel:{
-    height:525,
+    minHeight:490,
+    marginTop:20,
     "& h1":{
       color: "#707070",
       fontSize:20,
@@ -101,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
       fontFamily:"'Rajdhani', sans-serif"
     },
     [theme.breakpoints.down('md')]: {
-      height:475,
+      minHeight:475,
       "& h1":{
         color: "#707070",
         fontSize:13,
@@ -123,7 +127,28 @@ const useStyles = makeStyles((theme) => ({
         fontFamily:"'Rajdhani', sans-serif"
       },
     },
-  }
+  },
+
+  accordion: {
+    width: '100%',
+    backgroundColor:"#48494a",
+    marginBottom:10,
+    "& h3":{
+      color:"white",
+      fontWeight:"lighter",
+      fontSize:18
+    },
+    "& p":{
+      color:"white",
+      fontWeight:"lighter",
+      fontSize:15
+    }
+
+  },
+  headingAccordion: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightRegular,
+  },
 
 }));
 
@@ -190,7 +215,47 @@ export default function LandingPage() {
          </div>
          <div className={classes.TabPanel}>
             <TabPanel value={value} index={2} dir={theme.direction}>
-                <p>Item Three</p>
+                 <Accordion className={classes.accordion}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon  style={{color:"white"}}/>}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                        <h3>Jakarta</h3>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                        sit amet blandit leo lobortis eget.</p>
+                    </AccordionDetails>
+                </Accordion>
+
+                <Accordion className={classes.accordion}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon  style={{color:"white"}}/>}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                        <h3>Jawa Barat</h3>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                        sit amet blandit leo lobortis eget.</p>
+                    </AccordionDetails>
+                </Accordion>
+
+                <Accordion className={classes.accordion}>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon  style={{color:"white"}}/>}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                        <h3>Bali</h3>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                        sit amet blandit leo lobortis eget.</p>
+                    </AccordionDetails>
+                </Accordion>
             </TabPanel>
          </div>
       </SwipeableViews>
@@ -211,9 +276,6 @@ export default function LandingPage() {
       </AppBar>
 
     </div>
-
-
-    <About />
     </div>
   );
 }
